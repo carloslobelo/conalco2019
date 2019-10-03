@@ -1,0 +1,55 @@
+.pagina {
+    background-color: #e1ecf1;
+    color: black
+}
+
+.titulo {
+    font-weight: bold;
+    background-color: #c4e9e4;
+    color: darkblue;
+    border-radius: 12px 12px 12px 12px;
+    -moz-border-radius: 12px 12px 12px 12px;
+    -webkit-border-radius: 12px 12px 12px 12px;
+    border: 0px solid #243aa8;
+    padding-left: 20px
+}
+
+
+.titulo2 {
+    
+    background-color: #97b4e0;
+    color: darkblue;
+    border-radius: 12px 12px 12px 12px;
+    -moz-border-radius: 12px 12px 12px 12px;
+    -webkit-border-radius: 12px 12px 12px 12px;
+    border: 0px solid #243aa8;
+    padding-left: 20px
+}
+.border-der{
+    border-radius: 10px 100px 100px 10px;
+    -moz-border-radius: 10px 100px 100px 10px;
+    -webkit-border-radius: 10px 100px 100px 10px;
+     
+}
+.border-izq{
+    border-radius: 100px 0px 0px 100px;
+    -moz-border-radius: 100px 0px 0px 100px;
+    -webkit-border-radius: 100px 0px 0px 100px;
+    
+}
+
+.clave{
+    color: maroon; 
+    
+}
+.sombra{
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+.bordes{
+    border-radius: 100px 100px 100px 100px;
+    -moz-border-radius: 100px 100px 100px 100px;
+    -webkit-border-radius: 100px 100px 100px 100px;
+
+}
