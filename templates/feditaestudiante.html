@@ -1,0 +1,128 @@
+
+{% extends 'layout.html' %}
+{% block body %}
+<div class="alert alert-info" role="alert">
+    <h3><center>CONALCO</center></h3>
+</div>
+<hr>
+ <div class="row" style="border-width: 2px; border-color: olive">
+     <div class="col-md-12">
+            <div class="card">
+                   
+                    <div class="card-body">
+                     <div class="card-header">
+                         ESTUDIANTES
+                     </div>
+                      
+                      <p class="card-text">
+                            {% with messages= get_flashed_messages()%}
+                            {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                </div>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                                <form action="/editar_estudiante" method="POST">
+                                    <div class="input-group mb-3">
+                                            Id Estudiante
+                                            <input type="text" value="{{estudiante.0}}"  name="idest" class="form-control" placeholder="Tarjeta de Identidad" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                        </div>
+                                    <div class="input-group mb-3">
+                                        Identificación 
+                                        <input type="text" value="{{estudiante.1}}" name="nuip" class="form-control" placeholder="Tarjeta de Identidad" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                    </div>
+
+                                <div class="input-group mb-3">
+                                    Nombres 
+                                    <input type="text" value="{{estudiante.2}}" name="nomest" class="form-control" placeholder="Nombres" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                <div class="input-group mb-3">
+                                    Apellidos 
+                                    <input type="text" value="{{estudiante.3}}" name="apelest" class="form-control" placeholder="Apellidos" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                
+                                <div class="input-group mb-3">
+                                    Dirección 
+                                    <input type="text" value="{{estudiante.5}}" name="direst" class="form-control" placeholder="Dirección" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+
+                                
+                                <div class="input-group mb-3">Ciudad 
+                                    <select name="cbidciudad" id="cbidciudad" class="form-control border-izq" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                        {% for ciudad in ciudades %}
+                                            <option value="{{ciudad.0}}">{{ciudad.1}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    
+                                    <div class="input-group-append">
+                                      <button class="btn btn-info border-der" type="button" onclick="window.location='/ciudad'">Agregar</button>
+                                    </div>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                        Id Ciudad
+                                        <input type="text" value="{{estudiante.6}}"  onclick="selectEnCombo(this.value,'cbidciudad')"  name="idciudad" class="form-control" placeholder="Dirección" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+
+
+                                <div class="input-group mb-3">
+                                    Celular 
+                                    <input type="text" value="{{estudiante.4}}"  name="celest" class="form-control" placeholder="Celular" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                
+                                <div class="input-group mb-3"> 
+                                    Grado    
+                                    <input type="number" value="{{estudiante.7}}"  name="grado" class="form-control" placeholder="Grado" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    Grupo 
+                                        <input type="text" value="{{estudiante.8}}"  name="grupo" class="form-control" placeholder="Grupo" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                
+                                <div class="input-group mb-3">
+                                    Fecha de Nacimiento 
+                                        <input type="date" value="{{estudiante.9}}"  name="fecha_nac" class="form-control" placeholder="Fecha de nacimiento" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                
+                                <div class="input-group mb-3">
+                                            Id Colegio
+                                            <input type="text" value="{{estudiante.10}}"  onclick="selectEnCombo(this.value,'cbidcol')"  name="idcol" class="form-control" placeholder="Fecha de nacimiento" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                <div class="input-group mb-3">
+                                    Colegio:
+                                        <select name="cbidcol" id="cbidcol" class="form-control border-izq" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            {% for colegio in colegios %}
+                                                <option value="{{colegio.0}}">{{colegio.3}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        
+                                        <div class="input-group-append">
+                                          <button class="btn btn-info border-der" type="button" onclick="window.location='/colegio'">Agregar</button>
+                                        </div>
+                                    </div>
+
+
+                                <center>
+                                <button class="btn btn-primary" type="submit"> <i class="fas fa-save"></i> Save</button>
+                                </center>
+                            
+
+                                </form>
+                      </p>
+
+                      
+                    </div>
+            </div>
+           
+     </div>
+    
+ </div>
+
+<hr>
+{% endblock %}

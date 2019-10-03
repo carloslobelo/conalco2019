@@ -1,0 +1,117 @@
+
+{% extends 'layout.html' %}
+{% block body %}
+<div class="alert alert-info" role="alert">
+    <h3><center>CONALCO</center></h3>
+</div>
+<hr>
+ <div class="row" style="border-width: 2px; border-color: olive">
+     <div class="col-md-6">
+            <div class="card">
+                   
+                    <div class="card-body">
+                     <div class="card-header">
+                         ITEMS
+                     </div>
+                      
+                      <p class="card-text">
+                            {% with messages= get_flashed_messages()%}
+                            {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                </div>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                                <form action="/agregar_item" method="POST">
+                                    Examen
+                                    <div class="input-group mb-3">
+                                        <select name="cbidex" id="cbidex" class="form-control border-izq" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            {% for ex in examenes %}
+                                                <option value="{{ex.0}}">{{ex.1}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        
+                                        <div class="input-group-append">
+                                          <button class="btn btn-info border-der" type="button" onclick="window.location='/colegio'">Agregar</button>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        Pregunta: 
+                                        <textarea name="pregunta" id="pregunta" cols="80" rows="10"></textarea>
+                                        
+                                    </div>
+
+                                <div class="input-group mb-3">
+                                    Respuesta: <input type="text"  name="respuesta" class="form-control" placeholder="Respuesta correcta" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                <div class="input-group mb-3">
+                                    Valoración: <input type="number"  name="valor" value="0" class="form-control" placeholder="Apellidos" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                               
+                                <center>
+                                    <button class="btn btn-primary" type="submit"> <i class="fas fa-save"></i> Save</button>
+                                </center>
+                            
+
+                                </form>
+                      </p>
+
+                      
+                    </div>
+            </div>
+           
+     </div>
+     <div class="col-md-6">
+         <div class="card">
+            <div class="card-body">
+                    
+                    <p class="card-text">
+                            <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                           
+                                            <td>Pregunta</td>
+                                            <td>Valor</td>
+                                            
+                                            <td>Examén</td>
+                                            <td>Operaciones</td>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in items %}
+                                          <tr>
+                                                <td>{{item.1}}</td>
+                                                <td>{{item.4}}</td>
+                                                <td>{{item.5}}</td>
+                                                
+                                                
+
+                                            <td>
+                                                <a href="/feditaitem/{{item.0}}" class="btn btn-info">
+                                                   <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="/eliminaitem/{{item.0}}" class="btn btn-danger">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>    
+                    </p>
+                    
+                  </div>
+         </div>
+     </div>
+ </div>
+
+<hr>
+{% endblock %}

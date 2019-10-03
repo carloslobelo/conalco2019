@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+        {% for preg in pregs %}
+        <table class="table table-striped">
+                <thead>
+                        <tr><td><b>{{preg}}</b> </td></tr>
+                </thead>
+                <tbody>
+                        {% for valor in f[loop.index-1] %}
+                        <tr><td>{{valor}}</td></tr>
+                        {%endfor%}
+                </tbody>
+
+        </table>
+        <br> <br>
+        {% endfor %}
+
+{% endblock %}

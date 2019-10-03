@@ -1,0 +1,91 @@
+
+{% extends 'layout.html' %}
+{% block body %}
+<div class="alert alert-info" role="alert">
+    <h3><center>CONALCO</center></h3>
+</div>
+<hr>
+ <div class="row" style="border-width: 2px; border-color: olive">
+     <div class="col-md-7">
+            <div class="card">
+                   
+                    <div class="card-body">
+                     <div class="card-header">CIUDAD</div>
+                      
+                      <p class="card-text">
+                                <form action="/agregar_ciudad" method="POST">
+                                    Departamentos
+                                    <div class="input-group mb-3">
+                                        <select name="cbiddepto" id="cbiddepto" class="form-control border-izq" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            {% for dpto in deptos %}
+                                                <option value="{{dpto.0}}">{{dpto.1}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        
+                                        <div class="input-group-append">
+                                          <button class="btn btn-info border-der" type="button" onclick="window.location='/depto'">Agregar</button>
+                                        </div>
+                                </div>
+
+                                    <div class="input-group mb-3">
+                                            <input type="text"  name="nomciudad" class="form-control border-izq" placeholder="Nombre de la ciudad" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                              <button class="btn btn-primary border-der" type="submit">Save</button>
+                                            </div>
+                                    </div>
+                                </form>
+                      </p>
+
+                      
+                    </div>
+            </div>
+            {% with messages= get_flashed_messages()%}
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+     </div>
+     <div class="col-md-5">
+         <div class="card">
+            <div class="card-body">
+                    
+                    <p class="card-text">
+                            <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                        <td>Nombre</td><td>Operaciones</td></tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for ciud in ciudades %}
+                                          <tr>
+                                            <td>{{ciud.1}}</td>
+                                            <td>
+                                                <a href="/feditaciudad/{{ciud.0}}" class="btn btn-info">
+                                                    Editar
+                                                </a>
+                                                <a href="/eliminaciudad/{{ciud.0}}" class="btn btn-danger">
+                                                    Eliminar
+                                                </a>
+                                
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>    
+                    </p>
+                    
+                  </div>
+         </div>
+     </div>
+ </div>
+
+<hr>
+{% endblock %}

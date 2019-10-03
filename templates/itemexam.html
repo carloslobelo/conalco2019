@@ -1,0 +1,166 @@
+
+{% extends 'layout.html' %}
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link btn-outline-info" href="/examen">Inicio </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn-outline-info" href="/examen">Atras</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn-outline-info" href="/close">Cerrar Sesión</a>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+ <div class="row" style="border-width: 2px; border-color: olive">
+     <div class="col-md-12">
+            <div class="card"> 
+                    <div class="card-body">
+                     <div class="card-header">
+                        <center> ITEMS DE EXAMEN <br> {{ex.1}}</center>
+                     </div>
+                      <p class="card-text">
+                            {% with messages= get_flashed_messages()%}
+                            {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                </div>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                                <form action="/add_item_ex" method="POST">
+                                    Examen Id
+                                    <div class="input-group mb-3">
+                                       <input type="text" readonly  name="idex" value="{{ex.0}}" class="form-control" placeholder="Respuesta correcta" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="text" readonly  name="tituloExam" value="{{ex.1}}" class="form-control" placeholder="Respuesta correcta" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                     </div>
+                                    <div class="input-group mb-3">
+                                        Pregunta: 
+                                        <textarea name="pregunta" id="pregunta" cols="80" rows="10"></textarea>
+                                        
+                                    </div>
+                                <div id="cpopciones">
+                                    <table width=100% class="table table-bordered" id="tItems">
+                                        <thead>
+                                            <tr id="fila_0 ">
+                                                <td width=70%>Respuesta</td>
+                                                <td width=5%>Correcta</td>
+                                                <td width=20%>Valoración</td>
+                                                <td width=5%><button type="button" class="btn btn-info" onclick="addRow('tItems')"><i class="fas fa-plus"></i></button></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr id="fila1">
+                                                    <td> <input type="text" name="respuestas[]" id="" class="form-control"></td>
+                                                    <td><input type="radio" name="rbop"  class="form-control"></td>
+                                                    <td><input type="number" name="valores[]"  class="form-control"></td>
+                                                    <td><button type="button" onclick="deleteRow(this)" class="btn btn-info"><i class="fas fa-minus"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <center>
+                                    <button class="btn btn-primary" type="submit"> <i class="fas fa-save"></i> Save</button>
+                                </center>
+                                </form>
+                      </p>
+                    </div>
+            </div>
+           
+     </div>
+ </div>
+ <div class="row">
+     <div class="col-md-12">
+         <div class="card">
+            <div class="card-body">
+                    
+                    <p class="card-text">
+                            <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                           
+                                            <td>Pregunta</td>
+                                            <td>Valor</td>
+                                            
+                                            <td>Examén</td>
+                                            <td>Operaciones</td>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in items %}
+                                          <tr>
+                                                <td>{{item.1}}</td>
+                                                <td>{{item.4}}</td>
+                                                <td>{{item.5}}</td>
+                                                
+                                                
+
+                                            <td>
+                                                <a href="/feditaitem/{{item.0}}" class="btn btn-info">
+                                                   <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="/eliminaitem/{{item.0}}" class="btn btn-danger">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>    
+                    </p>
+                    
+                  </div>
+         </div>
+     </div>
+ </div>
+
+<hr>
+
+<script>
+    function myFunction() {
+      var elmnt = document.getElementById("fila1");
+      var cln = elmnt.cloneNode(true);
+
+      var tabla=document.getElementById("tItems")
+      tabla.appendChild(cln);
+    }
+    function deleteRow(r) {
+        var i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("tItems").deleteRow(i);
+    }
+    function miRadio(v){
+        //alert(v.name);
+    }
+    function addRow(tabla) {
+        let table = document.getElementById(tabla);
+        let row = table.insertRow(-1);
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let cell3 = row.insertCell(2);
+        let cell4 = row.insertCell(3);
+        
+        cell1.innerHTML = "<input type='text' name='respuestas[]' id='' class='form-control'>";
+        cell2.innerHTML = "<input type='radio' name='rbop' onclick='miRadio(this)' class='form-control'>";
+        cell3.innerHTML = "<input type='number' name='valores[]'  class='form-control'>";
+        cell4.innerHTML = "<button class='btn btn-info' onclick='deleteRow(this)'><i class='fas fa-minus'></i></button>";
+        
+  }
+</script>
+{% endblock %}

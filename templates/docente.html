@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="alert alert-info" role="alert">
+    <h3><center>CONALCO</center></h3>
+</div>
+<hr>
+ <div class="row" style="border-width: 2px; border-color: olive">
+     <div class="col-md-7">
+            <div class="card">    
+                    <div class="card-body">
+                     <div class="card-header">DOCENTE</div>
+                      
+                      <p class="card-text">
+                          Pre-Test
+                          Grupos
+                          Grupos (Estilos)
+                         <table class="table table-striped">
+                           {% for g in grupos %}
+                            <tr>
+                              <td>
+                                {{g.0}} 
+                                <a onclick="window.location='/pre_test/{{g.0}}'"  class="btn btn-info">
+                                  <i class="fas fa-list-alt"></i>Pre-Test
+                                </a>
+                              </td>
+                              <td>
+                               
+                              </td>
+                            </tr>
+                            {% endfor %}
+                         </table>
+
+                          
+                          <a onclick="window.location='/grupos'"  class="btn btn-info">
+                            <i class="fas fa-users"></i>Grupos
+                          </a>
+                          <a onclick="window.location='/grupo_estilo'"  class="btn btn-info">
+                            <i class="fas fa-users"></i>Estilos
+                          </a>
+                         
+                      </p>
+                    </div>
+             </div>
+      </div>    
+ </div>
+
+{% endblock %}

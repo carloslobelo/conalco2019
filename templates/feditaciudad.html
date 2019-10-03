@@ -1,0 +1,72 @@
+
+{% extends 'layout.html' %}
+{% block body %}
+<div class="alert alert-info" role="alert">
+    <h3><center>CONALCO</center></h3>
+</div>
+<hr>
+ <div class="row" style="border-width: 2px; border-color: olive">
+     <div class="col-md-8">
+            <div class="card">
+                   
+                    <div class="card-body">
+                     <div class="card-header">CIUDAD</div>
+                      
+                      <p class="card-text">
+                                <form action="/edita_ciudad" method="POST">
+                                    <div class="input-group mb-3">
+                                        Departamento
+                                        <select name="cbiddepto" id="cbiddepto" class="form-control border-izq" aria-label="Recipient's username" aria-describedby="basic-addon2" >
+                                            {% for dpto in dptos %}
+                                                <option value="{{dpto.0}}">{{dpto.1}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        
+                                        <div class="input-group-append">
+                                          <button class="btn btn-info border-der" type="button" onclick="window.location='/depto'">Agregar</button>
+                                        </div>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                   Id Departamento <input type="text"  name="t_id_depto" id="t_id_depto" class="form-control border-izq" value="{{ciud.2}}" aria-label="Recipient's username" aria-describedby="basic-addon2" readonly onclick="selectEnCombo(document.getElementById('t_id_depto').value,'cbiddepto')">
+                                    
+                                </div>
+                                <div class="input-group mb-3">
+                                    Id Ciudad<input type="text" readonly name="idciudad" class="form-control border-izq" value="{{ciud.0}}" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    
+                                </div>
+                                
+                                    <div class="input-group mb-3">
+                                            Nombre de la Ciudad
+                                            <input type="text"  name="nomciudad" class="form-control border-izq" value="{{ciud.1}}" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                              <button class="btn btn-info border-der" type="submit">Modificar</button>
+                                            </div>
+                                    </div>
+
+                                </form>
+                      </p>
+
+                      
+                    </div>
+            </div>
+            {% with messages= get_flashed_messages()%}
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+     </div>
+     
+    
+ </div>
+
+<hr>
+
+{% endblock %}

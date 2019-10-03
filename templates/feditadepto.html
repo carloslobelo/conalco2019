@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block body %} 
+     <h2>Departamento</h2>
+<form action="/edita_depto" method="POST">
+
+    <input type="text" name="iddepto" value="{{fila.0}}" readonly>
+    <input type="text" name="nomdepto" value="{{fila.1}}">
+
+   
+   
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

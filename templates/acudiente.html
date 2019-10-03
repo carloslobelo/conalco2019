@@ -1,0 +1,119 @@
+
+{% extends 'layout.html' %}
+{% block body %}
+<div class="alert alert-info" role="alert">
+    <h3><center>CONALCO</center></h3>
+</div>
+<hr>
+ <div class="row" style="border-width: 2px; border-color: olive">
+     <div class="col-md-4">
+            <div class="card">
+                   
+                    <div class="card-body">
+                     <div class="card-header">ACUDIENTES</div>
+                      
+                      <p class="card-text">
+                                <form action="/agregar_acudiente" method="POST">
+                                    <div class="input-group mb-3">
+                                        <input type="text"  name="cedula" class="form-control" placeholder="Cedula del acudiente" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                    </div>
+
+                                <div class="input-group mb-3">
+                                    <input type="text"  name="nomacud" class="form-control" placeholder="Nombre del acudiente" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text"  name="apelacud" class="form-control" placeholder="Apellido del acudiente" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                
+                                <div class="input-group mb-3">
+                                    <input type="text"  name="diracud" class="form-control" placeholder="Dirección del acudiente" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                <div class="input-group mb-3">
+                                    <select name="cbidciudad" id="cbidciudad" class="form-control border-izq" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                        {% for ciudad in ciudades %}
+                                            <option value="{{ciudad.0}}">{{ciudad.1}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    
+                                    <div class="input-group-append">
+                                      <button class="btn btn-info border-der" type="button" onclick="window.location='/depto'">Agregar</button>
+                                    </div>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <input type="text"  name="celacud" class="form-control" placeholder="Celular del acudiente" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                   
+                                </div>
+                                <center>
+                                <button class="btn btn-primary" type="submit"> <i class="fas fa-save"></i> Save</button>
+                                </center>
+                            
+
+                                </form>
+                      </p>
+
+                      
+                    </div>
+            </div>
+            {% with messages= get_flashed_messages()%}
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+     </div>
+     <div class="col-md-8">
+         <div class="card">
+            <div class="card-body">
+                    
+                    <p class="card-text">
+                            <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                           
+                                            <td>Nombre</td>
+                                            <td>Apellidos</td>
+                                            
+                                            <td>Celular</td>
+                                            <td>Operaciones</td>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for acudiente in acudientes %}
+                                          <tr>
+                                                <td>{{acudiente.2}}</td>
+                                                <td>{{acudiente.3}}</td>
+                                                <td>{{acudiente.4}}</td>
+                                                
+                                                
+
+                                            <td>
+                                                <a href="/feditaacudiente/{{acudiente.0}}" class="btn btn-info">
+                                                   <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="/eliminaacudiente/{{acudiente.0}}" class="btn btn-danger">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>    
+                    </p>
+                    
+                  </div>
+         </div>
+     </div>
+ </div>
+
+<hr>
+{% endblock %}

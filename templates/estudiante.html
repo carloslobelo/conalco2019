@@ -1,0 +1,179 @@
+
+{% extends 'layout.html' %}
+{% block body %}
+<div class="alert alert-info" role="alert">
+    <h3><center>CONALCO</center></h3>
+</div>
+<hr>
+ <div class="row" style="border-width: 2px; border-color: olive">
+     <div class="col-md-6">
+            <div class="card">
+                   
+                    <div class="card-body">
+                     <div class="card-header">
+                         USUARIOS
+                     </div>
+                      
+                      <p class="card-text">
+                            {% with messages= get_flashed_messages()%}
+                            {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                </div>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                                <form action="/agregar_estudiante" method="POST">
+                                    <div class="input-group mb-3">
+                                        <input type="text"  name="nuip" class="form-control" placeholder="Tarjeta de Identidad" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                    </div>
+
+                                <div class="input-group mb-3">
+                                    <input type="text"  name="nomest" class="form-control" placeholder="Nombres" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text"  name="apelest" class="form-control" placeholder="Apellidos" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                
+                                <div class="input-group mb-3">
+                                    <input type="text"  name="direst" class="form-control" placeholder="Dirección" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text"  name="email" class="form-control" placeholder="e-mail" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text"  name="clave" class="form-control" placeholder="Introduzca una clave" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+
+                                Ciudad
+                                <div class="input-group mb-3">
+                                    <select name="cbidciudad" id="cbidciudad" class="form-control border-izq" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                        {% for ciudad in ciudades %}
+                                            <option value="{{ciudad.0}}">{{ciudad.1}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    
+                                    <div class="input-group-append">
+                                      <button class="btn btn-info border-der" type="button" onclick="window.location='/ciudad'">Agregar</button>
+                                    </div>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <input type="text"  name="celest" class="form-control" placeholder="Celular" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                
+                                <div class="input-group mb-3">    
+                                    <input type="number"  name="grado" id="grado" class="form-control" placeholder="Grado" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+
+                                <div class="input-group mb-3">
+                                        <input type="text"  name="grupo" id="grupo" class="form-control" placeholder="Grupo" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                Fecha de Nacimiento
+                                <div class="input-group mb-3">
+                                        <input type="date"  name="fecha_nac" class="form-control" placeholder="Fecha de nacimiento" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                Colegio:
+                                <div class="input-group mb-3">
+                                        <select name="cbidcol" id="cbidcol" class="form-control border-izq" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            {% for colegio in colegios %}
+                                                <option value="{{colegio.0}}">{{colegio.3}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        
+                                        <div class="input-group-append">
+                                          <button class="btn btn-info border-der" type="button" onclick="window.location='/colegio'">Agregar</button>
+                                        </div>
+                                </div>
+                                <input type="checkbox"  name="docente" id="docente"  onclick="graduar()">  
+                                <Label for="docente"> Docente </Label>  
+                                
+                                <center>
+                                <button class="btn btn-primary" type="submit"> <i class="fas fa-save"></i> Save</button>
+                                </center>
+                                <script>
+                                    function graduar(){
+                                        check=document.getElementById("docente");
+                                        if (check.checked){
+                                            grado=document.getElementById("grado");
+                                            grupo=document.getElementById("grupo");
+                                            grado.value=17;
+                                            grupo.value="0";
+                                            grado.disabled=true;
+                                            grupo.disabled=true;
+                                        }
+                                        else
+                                        {
+                                            grado=document.getElementById("grado");
+                                            grupo=document.getElementById("grupo");
+                                            grado.value=10;
+                                            grupo.value="0";
+                                            grado.disabled=false;
+                                            grupo.disabled=false;  
+                                        }
+                                       
+                                    }
+                                </script>
+                            
+
+                                </form>
+                      </p>
+
+                      
+                    </div>
+            </div>
+           
+     </div>
+     <div class="col-md-6">
+         <div class="card">
+            <div class="card-body">
+                    
+                    <p class="card-text">
+                            <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                           
+                                            <td>Nombre</td>
+                                            <td>Apellidos</td>
+                                            
+                                            <td>Celular</td>
+                                            <td>Operaciones</td>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for estudiante in estudiantes %}
+                                          <tr>
+                                                <td>{{estudiante.2}}</td>
+                                                <td>{{estudiante.3}}</td>
+                                                <td>{{estudiante.4}}</td>
+                                                
+                                                
+
+                                            <td>
+                                                <button onclick="window.location='/feditaestudiante/{{estudiante.0}}'"  class="btn btn-info" {{activo}}>
+                                                   <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button onclick="window.location='/eliminaestudiante/{{estudiante.0}}'" class="btn btn-danger" {{activo}}>
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>    
+                    </p>
+                    
+                  </div>
+         </div>
+     </div>
+ </div>
+
+<hr>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+{% block body %}
+ <div class="row" style="border-width: 2px; border-color: olive">
+     <div class="col-md-12">
+            <div class="card">
+                    <div class="card-body">
+                     <div class="card-header"> ESTILOS DE APRENDIZAJE</div>
+                      <p class="card-text">
+                          <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                    <td>Identificación</td>
+                                    <td>Activo</td>
+                                    <td>Reflexivo</td>
+                                    <td>Sensitivo</td>
+                                    <td>Intuitivo</td>
+                                    <td>Visual</td>
+                                    <td>Verbal</td>
+                                    <td>Secuencial</td>
+                                    <td>Global</td>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                       <tr>
+                                            <td>{{estilo.1}}</td>
+                                            <td>{{estilo.2}}</td>
+                                            <td></td>
+                                            <td>{{estilo.3}}</td>
+                                            <td></td>
+                                            <td>{{estilo.4}}</td>
+                                            <td></td>
+                                            <td> {{estilo.5}}</td>
+                                            <td></td>
+                                        </tr>
+                              </tbody>
+                          </table>   
+                      </p>
+                    </div>
+            </div>
+     </div>
+ </div>
+
+{% endblock %}

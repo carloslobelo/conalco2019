@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="alert alert-info" role="alert">
+    <h3><center>CONALCO</center></h3>
+</div>
+<hr>
+ <div class="row" style="border-width: 2px; border-color: olive">
+     <div class="col-md-12">
+            <div class="card">
+                   
+                    <div class="card-body">
+                     <div class="card-header">Usuario</div>
+                      
+                      <p class="card-text">
+                                <form action="/ingresar" method="POST">
+                                    
+                                    <div class="input-group mb-3">
+                                            <input type="text"  name="usuario" class="form-control bordes" placeholder="E-mail" aria-label="Recipient's username" aria-describedby="basic-addon2">                                          
+                                    </div>
+                                    <div class="input-group mb-3">
+                                            <input type="password"  name="clave" class="form-control border-izq" placeholder="password" aria-label="Recipient's username" aria-describedby="basic-addon2">                                          
+                                    </div>
+                                    <center>
+                                            <button class="btn btn-success" type="submit">Ingresar</button>
+                                            <button class="btn btn-info" type="button" onclick="window.location='/estudiante'">Inscribirse</button>
+                                    </center>
+                                </form>
+                      </p>
+
+                      
+                    </div>
+            </div>
+            {% with messages= get_flashed_messages()%}
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+     </div>
+     
+ </div>
+
+<hr>
+{% endblock %}

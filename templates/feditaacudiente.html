@@ -1,0 +1,73 @@
+
+{% extends 'layout.html' %}
+{% block body %}
+<div class="alert alert-info" role="alert">
+    <h3><center>CONALCO</center></h3>
+</div>
+<hr>
+ <div class="row" style="border-width: 2px; border-color: olive">
+     <div class="col-md-12">
+            <div class="card">
+                   
+                    <div class="card-body">
+                     <div class="card-header">ACUDIENTES</div>
+                      
+                      <p class="card-text">
+                                <form action="/modificar_acudiente" method="POST">
+                                    <div class="input-group mb-3">
+                                            <input readonly type="text"  name="idacudiente" value="{{acudiente.0}}" class="form-control" placeholder="Id Acudiente" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                        </div>
+                                    <div class="input-group mb-3">
+                                        Cedula: 
+                                        <input value="{{acudiente.1}}" type="text"  name="cedula" class="form-control" placeholder="Cedula del acudiente" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                    </div>
+
+                                <div class="input-group mb-3">
+                                    Nombre: 
+                                    <input type="text"  name="nomacud" value="{{acudiente.2}}" class="form-control" placeholder="Nombre del acudiente" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                <div class="input-group mb-3">
+                                    Apellido: 
+                                    <input type="text"  name="apelacud"  value="{{acudiente.3}}" class="form-control" placeholder="Apellido del acudiente" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                
+                                <div class="input-group mb-3">
+                                    Dirección: 
+                                    <input type="text"  name="diracud" value="{{acudiente.5}}" class="form-control" placeholder="Dirección del acudiente" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                </div>
+                                <div class="input-group mb-3">
+                                    Id Ciudad: 
+                                        <input  readonly onclick="selectEnCombo(this.value,'cbidciudad')" type="text"  name="id_ciudad" value="{{acudiente.6}}" class="form-control" placeholder="Dirección del acudiente" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                    </div>
+                                <div class="input-group mb-3">
+                                    <select name="cbidciudad" id="cbidciudad" class="form-control border-izq" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                        {% for ciudad in ciudades %}
+                                            <option value="{{ciudad.0}}">{{ciudad.1}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    
+                                    <div class="input-group-append">
+                                      <button class="btn btn-info border-der" type="button" onclick="window.location='/ciudad'">Agregar</button>
+                                    </div>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    Celular: 
+                                    <input type="text"  name="celacud" value="{{acudiente.4}}" class="form-control" placeholder="Celular del acudiente" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+                                   
+                                </div>
+                                <center>
+                                <button class="btn btn-primary" type="submit"> <i class="fas fa-save"></i> Modificar</button>
+                                </center>
+                            
+
+                                </form>
+                      </p>
+
+                      
+                    </div>
+            </div>
+ </div>
+
+<hr>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="alert alert-info" role="alert">
+    <h3><center>CONALCO</center></h3>
+</div>
+<hr>
+<h2>{{ex.1}}</h2>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">
+            <div class="alert alert-secondary" role="alert">
+                   Datos del Estudiante
+            </div>
+        </h5>
+        <p class="card-text">  
+            <table  class="table">
+                <thead>
+                    <tr>
+                        <td>Identificación</td>
+                        <td>Nombres</td>
+                        <td>Apellidos</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{est.0}}</td>
+                        <td>{{est.2}}</td>
+                        <td>{{est.3}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </p>
+    </div>
+</div>
+
+
+ <div class="row" style="border-width: 2px; border-color: olive">
+     <div class="col-md-12">
+
+          
+        <form action="/save_exam" method="POST">
+            <input type="hidden" name="idex" value="{{ex.0}}">
+                {% for item in d_items %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <div class="alert alert-secondary" role="alert">
+                                       {{item.1}}
+                                </div>
+                            </h5>
+                            <p class="card-text">  
+                            {% if item.0==1 %}
+                                {% for opcion in d_opciones %}
+                                    {% if opcion.1==item.0 %}
+                                        <input type="radio" name="pregs_{{item.0}}" id="" value="{{opcion.2}}">{{opcion.2}} <br>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <textarea rows="4" class="form-control" name="pregs_{{item.0}}" id=""> 
+                                </textarea>
+                                <br>
+                            {%endif%}
+                            
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-success">Enviar</button>
+                
+        </form>
+     </div>
+     
+ </div>
+
+<hr>
+{% endblock %}

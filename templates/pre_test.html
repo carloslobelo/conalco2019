@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block body %}
+ <div class="row" style="border-width: 2px; border-color: olive">
+     <div class="col-md-12">
+            <div class="card">
+                    <div class="card-body">
+                     <div class="card-header"> </div>
+                      <p class="card-text">
+                          {% for r in estilo %}
+                             Su Puntuacion fue de: {{r.3}} <br>
+                          {% endfor %}
+                      </p>
+                    </div>
+            </div>
+     </div>
+ </div>
+
+{% endblock %}

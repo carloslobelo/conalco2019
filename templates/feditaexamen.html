@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="alert alert-info" role="alert">
+    <h3><center>CONALCO</center></h3>
+</div>
+<hr>
+ <div class="row" style="border-width: 2px; border-color: olive">
+     <div class="col-md-12">
+            <div class="card">
+                   
+                    <div class="card-body">
+                     <div class="card-header">EXAMÉN</div>
+                      
+                      <p class="card-text">
+                                <form action="/editar_examen" method="POST">
+                                    
+                                    <div class="input-group mb-3">
+                                        Id del Examén: <input type="number" value="{{ex.0}}" name="idexam" class="form-control border-izq" placeholder="Grado" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    </div>
+                                    
+                                    <div class="input-group mb-3">
+                                        
+                                       Id del Colegio: <input onclick="selectEnCombo(this.value,'cbidcol')" readonly type="number" value="{{ex.3}}" name="idcol" class="form-control border-izq" placeholder="Grado" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    </div>
+                                    Colegio:
+                                    <div class="input-group mb-3">
+                                        <select name="cbidcol" id="cbidcol" class="form-control border-izq" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            {% for colegio in colegios %}
+                                                <option value="{{colegio.0}}">{{colegio.3}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        
+                                        <div class="input-group-append">
+                                          <button class="btn btn-info border-der" type="button" onclick="window.location='/colegio'">Agregar</button>
+                                        </div>
+                                    </div>
+                                    Grado en el cual se aplicará el Examén
+                                    <div class="input-group mb-3">
+                                        
+                                        <input type="number"  name="grado" value="{{ex.2}}" class="form-control border-izq" placeholder="Grado" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                            <input type="text"  name="titulo" value="{{ex.1}}" class="form-control border-izq" placeholder="Titulo del Examén" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            
+                                    </div>
+                                    
+                                    <center>
+                                        <button class="btn btn-primary" type="submit"> <i class="fas fa-save"></i> Save</button>
+                                    </center>
+                                </form>
+                      </p>
+
+                      
+                    </div>
+            </div>
+           
+     </div>
+     
+ </div>
+
+<hr>
+{% endblock %}
